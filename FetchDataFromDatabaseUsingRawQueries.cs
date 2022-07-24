@@ -17,27 +17,30 @@ namespace EasyCrudNET.Examples
             easyCrud.SetSqlConnection("ConnectionString");
 
             easyCrud
+                .FromSql("select * from your_table where field=@scalarVariable")
                 .BindValues(new
                 {
                     scalarVariable = "Scalar value"
                 })
-                .ExecuteRawQuery("select * from your_table where field=@scalarVariable")
+                .ExecuteQuery()
                 .GetResult();
 
             easyCrud
+                .FromSql("select * from your_table where field=@scalarVariable")
                 .BindValues(new
                 {
                     scalarVariable = "Scalar value"
                 })
-                .ExecuteRawQuery("select * from your_table where field=@scalarVariable")
+                .ExecuteQuery()
                 .MapResultTo<UserEntity>();
 
             easyCrud
+                .FromSql("select * from your_table where field=@scalarVariable")
                 .BindValues(new
                 {
                     scalarVariable = "Scalar value"
                 })
-                .ExecuteRawQuery("select * from your_table where field=@scalarVariable")
+                .ExecuteQuery()
                 .MapResultTo<UserEntity>(c =>
                 {
                     return new UserEntity()

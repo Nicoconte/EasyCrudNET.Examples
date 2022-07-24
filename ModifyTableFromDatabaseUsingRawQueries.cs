@@ -14,28 +14,31 @@ namespace EasyCrudNET.Examples
             easyCrud.SetSqlConnection("ConnectionString");
 
             int rowsAffectedInsert = easyCrud
+                .FromSql("insert into your_table values(@scalarVariable1, @scalarVariable2)")
                 .BindValues(new
                 {
                     scalarVariable1 = "a",
                     scalarVariable2 = "b"
                 })
-                .SaveChangesRawQuery("insert into your_table values(@scalarVariable1, @scalarVariable2)");
+                .SaveChanges();
 
             int rowsAffectedUpdate = easyCrud
+                .FromSql("update your_table set field=@scalarVariable1, field=@scalarVariable2 where condition=@scalarVariable3")
                 .BindValues(new
                 {
                     scalarVariable1 = "a",
                     scalarVariable2 = "b",
                     scalarVariable3 = "c"
                 })
-                .SaveChangesRawQuery("update your_table set field=@scalarVariable1, field=@scalarVariable2 where condition=@scalarVariable3");
+                .SaveChanges();
 
             int rowsAffectedDelete = easyCrud
+                .FromSql("delete from your_table where field=@scalarVariable1")
                 .BindValues(new
                 {
                     scalarVariable1 = "Scalar value"
                 })
-                .SaveChangesRawQuery("delete from your_table where field=@scalarVariable1");
+                .SaveChanges();
         }
     }
 }
